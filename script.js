@@ -52,3 +52,6 @@ function profilePage() {
         alert("User information not found.");
     }
 }
+function goHome(){
+    location.reload();
+}
