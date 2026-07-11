@@ -1,85 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Earn Cash BD</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<title>Earn Cash BD</title>
 
-  <style>
-    body{
-      margin:0;
-      font-family:Arial,sans-serif;
-      background:#0f172a;
-      color:white;
-      text-align:center;
-      padding:30px;
-    }
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-    .card{
-      max-width:350px;
-      margin:auto;
-      background:#1e293b;
-      padding:20px;
-      border-radius:15px;
-    }
-
-    h1{
-      color:#38bdf8;
-    }
-
-    button{
-      width:100%;
-      padding:15px;
-      margin-top:15px;
-      border:none;
-      border-radius:10px;
-      background:#22c55e;
-      color:white;
-      font-size:18px;
-      cursor:pointer;
-    }
-
-    #name{
-      margin:20px 0;
-      font-size:20px;
-    }
-  </style>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="card">
+<div class="container">
 
-<h1>Earn Cash BD</h1>
+    <div class="header">
+        <h2>💰 Earn Cash BD</h2>
+        <p id="username">Loading...</p>
+    </div>
 
-<p id="name">Loading...</p>
+    <div class="balance-card">
+        <h3>Available Balance</h3>
+        <h1>৳ <span id="balance">0.00</span></h1>
+    </div>
 
-<button onclick="startWork()">
-Start Working
-</button>
+    <div class="stats">
+
+        <div class="box">
+            <h4>Referral</h4>
+            <p id="referral">0</p>
+        </div>
+
+        <div class="box">
+            <h4>Total Earn</h4>
+            <p>৳0</p>
+        </div>
+
+    </div>
+
+    <div class="menu">
+
+        <button onclick="watchAds()">
+            ▶ Watch Ads
+        </button>
+
+        <button onclick="referralPage()">
+            👥 Referral
+        </button>
+
+        <button onclick="withdrawPage()">
+            💸 Withdraw
+        </button>
+
+        <button onclick="leaderboardPage()">
+            🏆 Leaderboard
+        </button>
+
+        <button onclick="historyPage()">
+            📜 History
+        </button>
+
+        <button onclick="profilePage()">
+            ⚙ Profile
+        </button>
+
+    </div>
 
 </div>
 
-<script>
-
-let tg = window.Telegram.WebApp;
-
-tg.expand();
-
-if(tg.initDataUnsafe.user){
-document.getElementById("name").innerHTML =
-"Welcome, " + tg.initDataUnsafe.user.first_name;
-}else{
-document.getElementById("name").innerHTML =
-"Open this inside Telegram";
-}
-
-function startWork(){
-alert("Congratulations! Mini App is working.");
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
