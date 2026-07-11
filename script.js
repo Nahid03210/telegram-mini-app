@@ -1,3 +1,4 @@
+console.log("script.js loaded");
 let tg = window.Telegram.WebApp;
 
 tg.ready();
