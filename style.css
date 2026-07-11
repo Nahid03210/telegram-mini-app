@@ -177,3 +177,23 @@ body{
     background:#22c55e;
     color:#fff;
 }
+.profile-card{
+    background:#ffffff;
+    padding:20px;
+    border-radius:15px;
+    margin:20px;
+    text-align:center;
+}
+
+.balance-card{
+    margin-top:15px;
+    background:#2ecc71;
+    color:white;
+    padding:20px;
+    border-radius:15px;
+}
+
+.balance-card h1{
+    font-size:40px;
+    margin:10px 0;
+}
