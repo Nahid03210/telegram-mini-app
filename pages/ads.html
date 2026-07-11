@@ -1,1 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Watch Ads</title>
+
+<link rel="stylesheet" href="../style.css">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🎥 Watch Ads</h2>
+
+<p class="balance-text">
+Complete ad tasks to earn rewards.
+</p>
+
+<div class="stats">
+
+<div class="box">
+<h4>Today's Views</h4>
+<p>0 / 30</p>
+</div>
+
+<div class="box">
+<h4>Today's Earn</h4>
+<p>৳0.00</p>
+</div>
+
+</div>
+
+<div class="grid">
+
+<button onclick="openSlot(1)">
+🎬 Slot 1
+<span>10 Ads</span>
+</button>
+
+<button onclick="openSlot(2)">
+🎬 Slot 2
+<span>10 Ads</span>
+</button>
+
+<button onclick="openSlot(3)">
+🎬 Slot 3
+<span>10 Ads</span>
+</button>
+
+<button onclick="goHome()">
+🏠 Home
+<span>Back</span>
+</button>
+
+</div>
+
+</div>
+
+<script>
+function openSlot(slot){
+    alert("Slot " + slot + " will be connected after backend setup.");
+}
+
+function goHome(){
+    window.location.href="../index.html";
+}
+</script>
+
+</body>
+</html>
