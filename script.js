@@ -153,7 +153,12 @@ const user = tg.initDataUnsafe.user;
 if (!user) {
     alert("Telegram user not found!");
 } else {
-    saveUser(user);loadUser(user.id);
+    saveUser(user);loadUser(user.id);const BOT_USERNAME = "@makemonerryonline_bot";
+
+const referralLink =
+    `https://t.me/${BOT_USERNAME}/app?startapp=${user.id}`;
+
+console.log(referralLink);
 }
 
 async function saveUser(user) {
