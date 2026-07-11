@@ -66,3 +66,10 @@ function profilePage() {
 👥 Referrals: ${referrals}`
     );
 }legram Mini App
+function verifyJoin() {
+    // বর্তমানে শুধু UI
+    // VPS যোগ করার পরে এখানে Telegram API দিয়ে
+    // চ্যানেল সদস্য কিনা যাচাই করা হবে।
+
+    document.getElementById("joinScreen").style.display = "none";
+}
