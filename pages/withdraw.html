@@ -1,1 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Withdraw</title>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<link rel="stylesheet" href="../style.css">
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+<div class="header">
+
+<h2>💸 Withdraw</h2>
+
+<p>Request your payment</p>
+
+</div>
+
+
+
+<div class="balance-card">
+
+<h3>Your Balance</h3>
+
+<h1>
+৳ <span id="balance">0.00</span>
+</h1>
+
+
+</div>
+
+
+
+<div class="balance-card">
+
+
+<h3>Payment Method</h3>
+
+
+<select id="method">
+
+<option>bKash</option>
+
+<option>Nagad</option>
+
+<option>Binance</option>
+
+</select>
+
+
+
+<input 
+type="text"
+id="account"
+placeholder="Enter account number"
+/>
+
+
+
+<input 
+type="number"
+id="amount"
+placeholder="Withdraw amount"
+/>
+
+
+
+<button class="verify-btn" onclick="withdraw()">
+
+Request Withdraw
+
+</button>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<script>
+
+
+let balance =
+localStorage.getItem("balance") || 0;
+
+
+document.getElementById("balance").innerHTML =
+Number(balance).toFixed(2);
+
+
+
+function withdraw(){
+
+
+let amount =
+Number(document.getElementById("amount").value);
+
+
+
+if(amount <=0){
+
+alert("Enter valid amount");
+
+return;
+
+}
+
+
+
+if(amount > Number(balance)){
+
+
+alert("Insufficient balance");
+
+return;
+
+}
+
+
+
+let account =
+document.getElementById("account").value;
+
+
+
+if(account==""){
+
+alert("Enter account number");
+
+return;
+
+}
+
+
+
+alert(
+"Withdraw request submitted"
+);
+
+
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
