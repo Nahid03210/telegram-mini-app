@@ -102,3 +102,42 @@ localStorage.getItem("balance") || 0;
 
 document.getElementById("balance").innerHTML =
 Number(savedBalance).toFixed(2);
+// Save User to Firebase
+
+async function saveUser() {
+
+    if (!user) return;
+
+    const userRef = window.doc(window.db, "users", String(user.id));
+
+    const userSnap = await window.getDoc(userRef);
+
+    if (!userSnap.exists()) {
+
+        await window.setDoc(userRef, {
+
+            id: user.id,
+            name: user.first_name,
+            username: user.username || "",
+            balance: 0,
+            referral: 0,
+            totalEarn: 0,
+            createdAt: new Date().toISOString()
+
+        });
+
+        console.log("New user saved.");
+
+    } else {
+
+        console.log("User already exists.");
+
+    }
+
+}
+
+setTimeout(() => {
+
+    saveUser();
+
+}, 1000);
