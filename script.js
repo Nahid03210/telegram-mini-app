@@ -202,5 +202,11 @@ async function loadUser(userId) {
 document.getElementById("copyReferral").onclick = () => {
     navigator.clipboard.writeText(referralLink);
     alert("Referral Link Copied");
+    const BOT_USERNAME = "makemonerryonline_bot";
+const APP_SHORT_NAME = "okay";
+
+const referralLink =
+    `https://t.me/${BOT_USERNAME}/${APP_SHORT_NAME}?startapp=${user.id}`;
 };
+    
 }
