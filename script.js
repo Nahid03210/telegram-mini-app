@@ -55,3 +55,11 @@ function profilePage() {
 function goHome(){
     location.reload();
 }
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        const splash = document.getElementById("splash");
+        if (splash) {
+            splash.style.display = "none";
+        }
+    }, 2000);
+});
