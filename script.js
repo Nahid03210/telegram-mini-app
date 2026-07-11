@@ -153,7 +153,7 @@ const user = tg.initDataUnsafe.user;
 if (!user) {
     alert("Telegram user not found!");
 } else {
-    saveUser(user);
+    saveUser(user);loadUser(user.id);
 }
 
 async function saveUser(user) {
@@ -178,5 +178,19 @@ async function saveUser(user) {
         console.log("New user created");
     } else {
         console.log("User already exists");
+    }
+}
+async function loadUser(userId) {
+    const userRef = window.doc(window.db, "users", String(userId));
+    const userSnap = await window.getDoc(userRef);
+
+    if (userSnap.exists()) {
+        const data = userSnap.data();
+
+        document.getElementById("userName").innerText =
+            data.first_name + (data.last_name ? " " + data.last_name : "");
+
+        document.getElementById("userId").innerText = data.id;
+        document.getElementById("balance").innerText = data.balance;
     }
 }
