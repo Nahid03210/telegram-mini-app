@@ -145,3 +145,38 @@ setTimeout(() => {
     saveUser();
 
 }, 1000);
+const tg = window.Telegram.WebApp;
+tg.ready();
+
+const user = tg.initDataUnsafe.user;
+
+if (!user) {
+    alert("Telegram user not found!");
+} else {
+    saveUser(user);
+}
+
+async function saveUser(user) {
+    while (!window.firebaseReady) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+    }
+
+    const userRef = window.doc(window.db, "users", String(user.id));
+    const userSnap = await window.getDoc(userRef);
+
+    if (!userSnap.exists()) {
+        await window.setDoc(userRef, {
+            id: user.id,
+            first_name: user.first_name || "",
+            last_name: user.last_name || "",
+            username: user.username || "",
+            balance: 0,
+            referral: 0,
+            createdAt: Date.now()
+        });
+
+        console.log("New user created");
+    } else {
+        console.log("User already exists");
+    }
+}
