@@ -23,9 +23,10 @@ document.getElementById("balance").innerText = balance.toFixed(2);
 document.getElementById("earn").innerText = "৳" + totalEarn.toFixed(2);
 document.getElementById("referral").innerText = referrals;
 
-function watchAds() {
-    alert("🎥 Watch Ads page will be added in the next update.");
+function watchAds(){
+    window.location.href="pages/ads.html";
 }
+
 
 function dailyBonus() {
     alert("🎁 Daily Bonus feature is coming soon.");
