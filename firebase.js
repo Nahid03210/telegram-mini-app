@@ -26,3 +26,5 @@ window.setDoc = setDoc;
 window.updateDoc = updateDoc;
 console.log("Firebase loaded");
 console.log(window.db);
+window.firebaseReady = true;
+console.log("Firebase Ready");
