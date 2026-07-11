@@ -1,1 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Referral</title>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<link rel="stylesheet" href="../style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<div class="header">
+
+<h2>👥 Referral</h2>
+
+<p>Invite friends and earn rewards</p>
+
+</div>
+
+
+
+<div class="balance-card">
+
+
+<h3>Your Referral Link</h3>
+
+
+<p id="refLink">
+Loading...
+</p>
+
+
+<button class="verify-btn" onclick="copyLink()">
+
+📋 Copy Link
+
+</button>
+
+
+</div>
+
+
+
+<div class="balance-card">
+
+
+<h3>Total Referrals</h3>
+
+
+<h1 id="refCount">
+0
+</h1>
+
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+let tg = window.Telegram.WebApp;
+
+tg.ready();
+
+
+
+let user = tg.initDataUnsafe.user;
+
+
+let username = "guest";
+
+
+if(user){
+
+username = user.id;
+
+}
+
+
+
+let referralLink =
+"https://t.me/YourBotUsername?start=" + username;
+
+
+
+document.getElementById("refLink").innerHTML =
+referralLink;
+
+
+
+function copyLink(){
+
+
+navigator.clipboard.writeText(referralLink);
+
+
+alert("Referral link copied!");
+
+}
+
+
+
+</script>
+
+
+</body>
+
+</html>
