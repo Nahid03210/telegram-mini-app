@@ -1,3 +1,6 @@
+setTimeout(() => {
+    alert("Firebase Ready: " + window.firebaseReady);
+}, 2000);
 console.log("script.js loaded");
 let tg = window.Telegram.WebApp;
 
