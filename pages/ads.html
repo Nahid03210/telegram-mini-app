@@ -1,75 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Watch Ads</title>
 
-<link rel="stylesheet" href="../style.css">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<link rel="stylesheet" href="../style.css">
 
 </head>
 
+
 <body>
+
 
 <div class="container">
 
+
+<div class="header">
+
 <h2>🎥 Watch Ads</h2>
 
-<p class="balance-text">
-Complete ad tasks to earn rewards.
-</p>
-
-<div class="stats">
-
-<div class="box">
-<h4>Today's Views</h4>
-<p>0 / 30</p>
-</div>
-
-<div class="box">
-<h4>Today's Earn</h4>
-<p>৳0.00</p>
-</div>
+<p>Earn money by watching ads</p>
 
 </div>
 
-<div class="grid">
 
-<button onclick="openSlot(1)">
-🎬 Slot 1
-<span>10 Ads</span>
+
+<div class="balance-card">
+
+<h3>Your Balance</h3>
+
+<h1>
+৳ <span id="balance">0.00</span>
+</h1>
+
+</div>
+
+
+
+<div class="balance-card">
+
+
+<h3 id="adStatus">
+Ready for Ad
+</h3>
+
+
+<button class="verify-btn" onclick="watchAd()">
+
+▶ Watch Ad
+
 </button>
 
-<button onclick="openSlot(2)">
-🎬 Slot 2
-<span>10 Ads</span>
-</button>
-
-<button onclick="openSlot(3)">
-🎬 Slot 3
-<span>10 Ads</span>
-</button>
-
-<button onclick="goHome()">
-🏠 Home
-<span>Back</span>
-</button>
 
 </div>
 
+
+
 </div>
+
+
 
 <script>
-function openSlot(slot){
-    alert("Slot " + slot + " will be connected after backend setup.");
+
+
+let balance =
+localStorage.getItem("balance") || 0;
+
+
+document.getElementById("balance").innerHTML =
+Number(balance).toFixed(2);
+
+
+
+function watchAd(){
+
+
+let button =
+event.target;
+
+
+button.disabled=true;
+
+
+document.getElementById("adStatus").innerHTML =
+"Watching Ad...";
+
+
+setTimeout(function(){
+
+
+let reward = 0.50;
+
+
+let balance =
+localStorage.getItem("balance") || 0;
+
+
+balance =
+Number(balance)+reward;
+
+
+localStorage.setItem(
+"balance",
+balance
+);
+
+
+
+document.getElementById("balance").innerHTML =
+balance.toFixed(2);
+
+
+
+document.getElementById("adStatus").innerHTML =
+"✅ Ad Completed +৳0.50";
+
+
+button.disabled=false;
+
+
+},10000);
+
+
+
 }
 
-function goHome(){
-    window.location.href="../index.html";
-}
+
 </script>
 
+
 </body>
+
 </html>
