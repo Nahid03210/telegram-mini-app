@@ -148,7 +148,9 @@ setTimeout(() => {
 const tg = window.Telegram.WebApp;
 tg.ready();
 
-const user = tg.initDataUnsafe.user;
+const user = tg.initDataUnsafe.user;const startParam = tg.initDataUnsafe.start_param || null;
+
+console.log("Start Param:", startParam);
 
 if (!user) {
     alert("Telegram user not found!");
