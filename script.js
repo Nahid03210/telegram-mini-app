@@ -197,5 +197,10 @@ async function loadUser(userId) {
 
         document.getElementById("userId").innerText = data.id;
         document.getElementById("balance").innerText = data.balance;
-    }
+    }document.getElementById("referralLink").value = referralLink;
+
+document.getElementById("copyReferral").onclick = () => {
+    navigator.clipboard.writeText(referralLink);
+    alert("Referral Link Copied");
+};
 }
