@@ -128,3 +128,52 @@ body{
     font-size:15px;
     font-weight:600;
 }
+.join-screen{
+    position:fixed;
+    inset:0;
+    background:#0f172a;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.join-card{
+    width:90%;
+    max-width:350px;
+    background:#1e293b;
+    border-radius:20px;
+    padding:25px;
+    text-align:center;
+}
+
+.join-card h2{
+    color:#38bdf8;
+    margin-bottom:15px;
+}
+
+.join-card p{
+    color:#cbd5e1;
+    margin-bottom:20px;
+}
+
+.join-btn,
+.verify-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    margin-top:12px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.join-btn{
+    background:#2563eb;
+    color:#fff;
+}
+
+.verify-btn{
+    background:#22c55e;
+    color:#fff;
+}
