@@ -24,3 +24,5 @@ window.doc = doc;
 window.getDoc = getDoc;
 window.setDoc = setDoc;
 window.updateDoc = updateDoc;
+console.log("Firebase loaded");
+console.log(window.db);
