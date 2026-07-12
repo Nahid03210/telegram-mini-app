@@ -29,6 +29,7 @@ window.addEventListener("load", async () => {
     setupNavigation();
 
     setupReferral();
+    await setupDailyBonus();
 async function saveUser() {
 
     const userRef = window.doc(window.db, "users", String(user.id));
