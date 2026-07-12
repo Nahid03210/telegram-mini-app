@@ -134,7 +134,77 @@ function setupReferral() {
         }
 
     });
+const BONUS_AMOUNT = 10;
+const BONUS_COOLDOWN = 24 * 60 * 60 * 1000; // 24 hours
 
+async function setupDailyBonus() {
+
+    const btn = document.getElementById("claimBonusBtn");
+    const status = document.getElementById("bonusStatus");
+
+    const userRef = window.doc(window.db, "users", String(user.id));
+
+    async function refreshBonus() {
+
+        const snap = await window.getDoc(userRef);
+
+        if (!snap.exists()) return;
+
+        const data = snap.data();
+
+        const now = Date.now();
+
+        const remaining = BONUS_COOLDOWN - (now - (data.lastBonus || 0));
+
+        if (remaining <= 0) {
+
+            btn.disabled = false;
+            btn.innerText = "🎁 Claim Daily Bonus";
+            status.innerText = "Bonus Available";
+
+        } else {
+
+            btn.disabled = true;
+
+            const h = Math.floor(remaining / 3600000);
+            const m = Math.floor((remaining % 3600000) / 60000);
+            const s = Math.floor((remaining % 60000) / 1000);
+
+            status.innerText = `Next Bonus: ${h}h ${m}m ${s}s`;
+
+        }
+
+    }
+
+    btn.onclick = async () => {
+
+        const snap = await window.getDoc(userRef);
+        const data = snap.data();
+
+        const now = Date.now();
+
+        if (now - (data.lastBonus || 0) < BONUS_COOLDOWN)
+            return;
+
+        await window.updateDoc(userRef, {
+
+            balance: (data.balance || 0) + BONUS_AMOUNT,
+
+            lastBonus: now
+
+        });
+
+        await loadUser();
+
+        refreshBonus();
+
+    };
+
+    refreshBonus();
+
+    setInterval(refreshBonus,1000);
+
+}
 }
 }
 });
