@@ -29,14 +29,15 @@ async function startApp(){
         return;
     }
 
-    await saveUser();
+  await saveUser();
 
-    await loadUser();
+await loadUser();
 
-    setupNavigation();
+setupNavigation();
 
-    setupReferral();
+setupReferral();
 
+setupDailyBonus();
 }
 // =========================
 // Save User
