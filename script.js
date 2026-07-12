@@ -212,11 +212,35 @@ const referralLink =
 };
     
 }
-const buttons = document.querySelectorAll(".nav-btn");
+const pages = {
+    homeBtn: "homePage",
+    taskBtn: "taskPage",
+    referBtn: "referPage",
+    walletBtn: "walletPage",
+    profileBtn: "profilePage"
+};
 
-buttons.forEach(btn=>{
-    btn.onclick=()=>{
-        buttons.forEach(b=>b.classList.remove("active"));
+document.querySelectorAll(".nav-btn").forEach(btn => {
+
+    btn.addEventListener("click", () => {
+
+        // সব Page লুকাও
+        document.querySelectorAll(".page").forEach(page => {
+            page.style.display = "none";
+        });
+
+        // যে Button-এ ক্লিক হয়েছে সেই Page দেখাও
+        document.getElementById(pages[btn.id]).style.display = "block";
+
+        // Active Button পরিবর্তন করো
+        document.querySelectorAll(".nav-btn").forEach(b => {
+            b.classList.remove("active");
+        });
+
         btn.classList.add("active");
+
+    });
+
+});
     }
 });
