@@ -155,3 +155,80 @@ function setupReferral(){
     };
 
 }
+// =========================
+// Daily Bonus
+// =========================
+
+const BONUS_AMOUNT = 10;
+const BONUS_TIME = 24 * 60 * 60 * 1000;
+
+function setupDailyBonus() {
+
+    const btn = document.getElementById("claimBonusBtn");
+    const status = document.getElementById("bonusStatus");
+
+    updateBonus();
+
+    btn.onclick = claimBonus;
+
+    setInterval(updateBonus, 1000);
+
+    async function updateBonus() {
+
+        const userRef = window.doc(window.db, "users", String(user.id));
+        const snap = await window.getDoc(userRef);
+
+        if (!snap.exists()) return;
+
+        const data = snap.data();
+
+        const left = BONUS_TIME - (Date.now() - (data.lastBonus || 0));
+
+        if (left <= 0) {
+
+            btn.disabled = false;
+            btn.innerText = "🎁 Claim Daily Bonus";
+            status.innerText = "Bonus Available";
+
+        } else {
+
+            btn.disabled = true;
+
+            const h = Math.floor(left / 3600000);
+            const m = Math.floor((left % 3600000) / 60000);
+            const s = Math.floor((left % 60000) / 1000);
+
+            status.innerText =
+                `Next Bonus : ${h}h ${m}m ${s}s`;
+
+        }
+
+    }
+
+    async function claimBonus() {
+
+        const userRef = window.doc(window.db, "users", String(user.id));
+        const snap = await window.getDoc(userRef);
+
+        const data = snap.data();
+
+        if (Date.now() - (data.lastBonus || 0) < BONUS_TIME)
+            return;
+
+        await window.updateDoc(userRef, {
+
+            balance: (data.balance || 0) + BONUS_AMOUNT,
+
+            lastBonus: Date.now()
+
+        });
+
+        await loadUser();
+
+        updateBonus();
+
+        Telegram.WebApp.showAlert("🎉 Daily Bonus Claimed!");
+
+    }
+
+}
