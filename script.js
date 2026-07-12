@@ -106,3 +106,63 @@ async function loadUser(){
     document.getElementById("walletBalance").innerText = data.balance;
 
 }
+// =========================
+// Navigation
+// =========================
+
+function setupNavigation(){
+
+    const pages = {
+        homeBtn:"homePage",
+        taskBtn:"taskPage",
+        referBtn:"referPage",
+        walletBtn:"walletPage",
+        profileBtn:"profilePage"
+    };
+
+    document.querySelectorAll(".nav-btn").forEach(btn=>{
+
+        btn.addEventListener("click",()=>{
+
+            document.querySelectorAll(".page").forEach(page=>{
+                page.style.display="none";
+            });
+
+            document.getElementById(pages[btn.id]).style.display="block";
+
+            document.querySelectorAll(".nav-btn").forEach(b=>{
+                b.classList.remove("active");
+            });
+
+            btn.classList.add("active");
+
+        });
+
+    });
+
+}
+
+// =========================
+// Referral
+// =========================
+
+function setupReferral(){
+
+    const input = document.getElementById("referralLink");
+    const btn = document.getElementById("copyReferral");
+
+    input.value = referralLink;
+
+    btn.onclick = async ()=>{
+
+        await navigator.clipboard.writeText(referralLink);
+
+        if(window.Telegram.WebApp.showAlert){
+            Telegram.WebApp.showAlert("Referral Link Copied");
+        }else{
+            alert("Referral Link Copied");
+        }
+
+    };
+
+}
