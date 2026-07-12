@@ -29,5 +29,64 @@ window.addEventListener("load", async () => {
     setupNavigation();
 
     setupReferral();
+async function saveUser() {
 
+    const userRef = window.doc(window.db, "users", String(user.id));
+    const userSnap = await window.getDoc(userRef);
+
+    if (!userSnap.exists()) {
+
+        await window.setDoc(userRef, {
+            id: user.id,
+            first_name: user.first_name || "",
+            last_name: user.last_name || "",
+            username: user.username || "",
+            balance: 0,
+            referral: 0,
+            referredBy: startParam || null,
+            lastBonus: 0,
+            createdAt: Date.now()
+        });
+
+        if (startParam && startParam != user.id) {
+
+            const refRef = window.doc(window.db, "users", String(startParam));
+            const refSnap = await window.getDoc(refRef);
+
+            if (refSnap.exists()) {
+
+                const refData = refSnap.data();
+
+                await window.updateDoc(refRef, {
+                    referral: (refData.referral || 0) + 1,
+                    balance: (refData.balance || 0) + 10
+                });
+
+            }
+        }
+    }
+}
+
+async function loadUser() {
+
+    const userRef = window.doc(window.db, "users", String(user.id));
+    const userSnap = await window.getDoc(userRef);
+
+    if (!userSnap.exists()) return;
+
+    const data = userSnap.data();
+
+    document.getElementById("userName").innerText =
+        data.first_name + (data.last_name ? " " + data.last_name : "");
+
+    document.getElementById("profileName").innerText =
+        data.first_name + (data.last_name ? " " + data.last_name : "");
+
+    document.getElementById("userId").innerText = data.id;
+
+    document.getElementById("balance").innerText = data.balance;
+
+    document.getElementById("walletBalance").innerText = data.balance;
+
+}
 });
