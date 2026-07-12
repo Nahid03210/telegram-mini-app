@@ -12,6 +12,50 @@
 <link rel="stylesheet" href="style.css">
 
 </head>
+    <!-- HOME -->
+<div id="homePage" class="page">
+    <h2>🏠 Home</h2>
+    <p>Welcome to Make Money Online</p>
+</div>
+
+<!-- TASKS -->
+<div id="taskPage" class="page" style="display:none;">
+    <h2>📋 Tasks</h2>
+    <p>No Tasks Available</p>
+</div>
+
+<!-- REFER -->
+<div id="referPage" class="page" style="display:none;">
+    <h2>👥 Refer & Earn</h2>
+
+    <input type="text" id="referralLink" readonly>
+
+    <button id="copyReferral">
+        Copy Referral Link
+    </button>
+</div>
+
+<!-- WALLET -->
+<div id="walletPage" class="page" style="display:none;">
+    <h2>💳 Wallet</h2>
+
+    <h3>Balance</h3>
+
+    <h1 id="walletBalance">0</h1>
+
+    <button id="withdrawBtn">
+        Withdraw
+    </button>
+</div>
+
+<!-- PROFILE -->
+<div id="profilePage" class="page" style="display:none;">
+    <h2>👤 Profile</h2>
+
+    <h3 id="userName"></h3>
+
+    <p>ID : <span id="userId"></span></p>
+</div>
 <script type="module" src="firebase.js"></script>
 <script src="script.js"></script>
     <nav class="bottom-nav">
