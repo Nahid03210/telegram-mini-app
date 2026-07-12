@@ -58,8 +58,6 @@ async function saveUser(){
         referredBy: startParam || "",
         lastBonus: 0,
         createdAt: Date.now()
-    });
-
     // Referral Bonus
     if(startParam && startParam != user.id){
 
@@ -75,11 +73,6 @@ async function saveUser(){
                 balance:(refData.balance || 0)+10
             });
 
-        }
-
-    }
-
-}
 
 // =========================
 // Load User
@@ -136,12 +129,7 @@ function setupNavigation(){
 
             btn.classList.add("active");
 
-        });
-
-    });
-
-}
-
+   
 // =========================
 // Referral
 // =========================
