@@ -87,6 +87,54 @@ async function loadUser() {
     document.getElementById("balance").innerText = data.balance;
 
     document.getElementById("walletBalance").innerText = data.balance;
+function setupNavigation() {
 
+    const pages = {
+        homeBtn: "homePage",
+        taskBtn: "taskPage",
+        referBtn: "referPage",
+        walletBtn: "walletPage",
+        profileBtn: "profilePage"
+    };
+
+    document.querySelectorAll(".nav-btn").forEach(btn => {
+
+        btn.addEventListener("click", () => {
+
+            document.querySelectorAll(".page").forEach(page => {
+                page.style.display = "none";
+            });
+
+            document.getElementById(pages[btn.id]).style.display = "block";
+
+            document.querySelectorAll(".nav-btn").forEach(b => {
+                b.classList.remove("active");
+            });
+
+            btn.classList.add("active");
+
+        });
+
+    });
+
+}
+
+function setupReferral() {
+
+    document.getElementById("referralLink").value = referralLink;
+
+    document.getElementById("copyReferral").addEventListener("click", async () => {
+
+        await navigator.clipboard.writeText(referralLink);
+
+        if (window.Telegram?.WebApp?.showAlert) {
+            Telegram.WebApp.showAlert("Referral Link Copied!");
+        } else {
+            alert("Referral Link Copied!");
+        }
+
+    });
+
+}
 }
 });
